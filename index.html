@@ -7,7 +7,7 @@
 <style>
 :root{
   --bg:#fffaf5;
-  --card:#ffffff80; /* providno */
+  --card:#ffffff80;
   --accent:#e07a6a;
   --muted:#6b6b6b;
   --wa:#25D366;
@@ -33,7 +33,7 @@ nav button.active{background:rgba(0,0,0,0.05);}
 .hero .happy-users{margin-top:8px;font-size:18px;font-weight:700;color:var(--accent);}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;}
 .card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,0.06);display:flex;flex-direction:column;}
-.thumb{height:180px;background:transparent;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:14px;}
+.thumb{height:180px;background:transparent;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:14px;cursor:pointer;}
 .thumb img{width:100%;height:100%;object-fit:contain;border-radius:12px;}
 .card-body{padding:12px;display:flex;flex-direction:column;flex:1;}
 .title{font-weight:600;margin-bottom:4px;}
@@ -44,6 +44,31 @@ footer .contact-btn{padding:8px 12px;border-radius:8px;text-decoration:none;colo
 .payment-options {margin-top:12px;text-align:center;font-size:14px;color:var(--muted);}
 .payment-options .icons {display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:6px;}
 @media(max-width:520px){.thumb{height:150px;}}
+
+/* Lightbox */
+#lightbox{
+  display:none;
+  position:fixed;
+  top:0; left:0;
+  width:100%; height:100%;
+  background:rgba(0,0,0,0.85);
+  justify-content:center; align-items:center;
+  z-index:9999;
+}
+#lightbox img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:12px;
+  box-shadow:0 0 20px rgba(0,0,0,0.5);
+}
+#lightbox span{
+  position:absolute;
+  top:20px; right:30px;
+  font-size:36px;
+  color:#fff;
+  cursor:pointer;
+  font-weight:bold;
+}
 </style>
 </head>
 <body>
@@ -85,6 +110,12 @@ footer .contact-btn{padding:8px 12px;border-radius:8px;text-decoration:none;colo
       </div>
     </div>
   </footer>
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox">
+  <span id="lightbox-close">&times;</span>
+  <img id="lightbox-img" src="">
 </div>
 
 <script>
@@ -160,8 +191,22 @@ function renderGrid(lang){
       </div>
     `;
     grid.appendChild(div);
+
+    // Lightbox
+    div.querySelector("img").addEventListener("click", ()=>{
+      document.getElementById("lightbox-img").src=p.img;
+      document.getElementById("lightbox").style.display="flex";
+    });
   });
 }
+
+// Lightbox close
+document.getElementById("lightbox-close").addEventListener("click", ()=>{
+  document.getElementById("lightbox").style.display="none";
+});
+document.getElementById("lightbox").addEventListener("click",(e)=>{
+  if(e.target===document.getElementById("lightbox")) document.getElementById("lightbox").style.display="none";
+});
 
 // Animacija motiva 🌸 🎁 🎀 🥳
 const bg=document.getElementById("bg-flowers");
@@ -183,7 +228,7 @@ for(let i=0;i<30;i++){
   bg.appendChild(f);
 }
 
-// Animacija broja zadovoljnih korisnika
+// Broj zadovoljnih korisnika
 let happyCount=0;
 const targetCount=1450;
 const happyElem=document.getElementById("happy-count");
