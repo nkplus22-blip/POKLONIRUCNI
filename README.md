@@ -1,22 +1,85 @@
 # DekorationsGeschenke
 
-Ručna izrada voskanih dekoracija (pokloni) – moderna web stranica s prikazom proizvoda i narudžbom preko WhatsAppa.
+Ručne voskane dekoracije i pokloni – savršeni za vjenčanja, proslave, rođendane i praznike. Ova web stranica omogućava pregled i narudžbu proizvoda putem WhatsAppa.
 
----
+## Sadržaj
 
-## Pregled
+- **index.html** – glavna stranica s galerijom proizvoda
+- **images/** – folder sa slikama proizvoda (image1.jpeg … image9.jpeg)
+- **README.md** – ovaj dokument
 
-Ova stranica prikazuje proizvode u mrežnom rasporedu s animiranim motivima 🌸 🎁 🎀 🥳 u pozadini. Svaki proizvod ima svoj okvir s prikazom slike, naziv proizvoda, cijenu i gumb za narudžbu koji vodi direktno na WhatsApp.
+## Opis stranice
 
-**Glavne karakteristike:**
+- Animacija motiva 🌸 🎁 🎀 🥳 u pozadini
+- Nazivi proizvoda se prevode između njemačkog (DE) i hrvatskog (HR)
+- Okviri za slike su providni da se vidi animacija u pozadini
+- Klikom na "Produkt kaufen / Kupi proizvod" otvara se WhatsApp sa pripremljenom porukom za narudžbu
+- Footer uključuje kontakt i opcije plaćanja
 
-- Animacija motiva u pozadini, kreću se odozdo prema gore i odozgo prema dolje.
-- Okviri za slike proizvoda su providni kako se animacija u pozadini vidi.
-- Nazivi proizvoda se lokaliziraju: **Njemački (DE)** i **Hrvatski (HR)**.
-- Svaki proizvod ima gumb "Kupi proizvod" / "Produkt kaufen" koji vodi na WhatsApp s unaprijed pripremljenom porukom.
-- Responsivan dizajn za mobitele i desktop.
-- Prikaz opcija plaćanja u footeru: IBAN, WesternUnion, RiaMoney, PayPal, Skrill, Payonner.
+## Instalacija
 
----
+1. Klonirajte ili preuzmite repozitorij:
 
-## Struktura projekta
+```bash
+git clone https://github.com/tvojusername/tvojrepo.git
+
+2. Provjerite strukturu foldera:
+
+
+
+tvojrepo/
+│
+├─ index.html
+├─ README.md
+└─ images/
+   ├─ image1.jpeg
+   ├─ image2.jpeg
+   ├─ image3.jpeg
+   ├─ image4.jpeg
+   ├─ image5.jpeg
+   ├─ image6.jpeg
+   ├─ image7.jpeg
+   ├─ image8.jpeg
+   └─ image9.jpeg
+
+3. Otvorite index.html u pregledniku da vidite stranicu uživo.
+
+
+
+Korištenje
+
+Promjena jezika: kliknite 🇩🇪 DE ili 🇭🇷 HR u headeru
+
+Dodavanje novih proizvoda:
+
+Dodajte novu sliku u images/ folder
+
+Dodajte novi objekt u products listu u index.html s nazivom DE i HR i cijenom
+
+
+Sve promjene se mogu pushati na GitHub da budu online
+
+
+Kontakt
+
+WhatsApp: +49 1573 7824794
+
+
+Opcije plaćanja
+
+💳 IBAN
+
+💵 WesternUnion
+
+💰 RiaMoney
+
+🅿️ PayPal
+
+💸 Skrill
+
+💳 Payonner
+
+
+License
+
+Ovaj projekt je slobodan za ličnu upotrebu.
