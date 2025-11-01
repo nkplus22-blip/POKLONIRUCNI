@@ -30,7 +30,7 @@ nav button.active{background:rgba(0,0,0,0.05);}
 .hero h2{margin:0 0 8px 0;font-size:20px;}
 .hero p{margin:0;color:var(--muted);}
 .hero .additional-desc{margin-top:8px;font-size:14px;color:var(--muted);line-height:1.6;}
-.hero .happy-users{margin-top:8px;font-size:18px;font-weight:700;color:var(--accent);}
+.hero .happy-users{margin-top:8px;font-size:16px;font-weight:600;color:var(--accent);white-space:pre-line;}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;}
 .card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,0.06);display:flex;flex-direction:column;}
 .thumb{height:180px;background:transparent;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:14px;cursor:pointer;}
@@ -86,7 +86,7 @@ footer .contact-btn{padding:8px 12px;border-radius:8px;text-decoration:none;colo
     <h2 id="hero-title"></h2>
     <p id="hero-desc"></p>
     <p class="additional-desc" id="hero-additional"></p>
-    <div class="happy-users">Zadovoljnih korisnika: <span id="happy-count">0</span>+</div>
+    <div class="happy-users" id="happy-users"></div>
   </section>
 
   <main>
@@ -100,12 +100,12 @@ footer .contact-btn{padding:8px 12px;border-radius:8px;text-decoration:none;colo
     <div class="payment-options">
       <h4>Opcije plaćanja:</h4>
       <div class="icons">
-        <span>💳 IBAN</span>
-        <span>💵 WesternUnion</span>
-        <span>💰 RiaMoney</span>
-        <span>🅿️ PayPal</span>
-        <span>💸 Skrill</span>
-        <span>💳 Payonner</span>
+        <a class="btn" href="https://wa.me/4915737824794" target="_blank">💳 IBAN</a>
+        <a class="btn" href="https://wa.me/4915737824794" target="_blank">💵 WesternUnion</a>
+        <a class="btn" href="https://wa.me/4915737824794" target="_blank">💰 RiaMoney</a>
+        <a class="btn" href="https://wa.me/4915737824794" target="_blank">🅿️ PayPal</a>
+        <a class="btn" href="https://wa.me/4915737824794" target="_blank">💸 Skrill</a>
+        <a class="btn" href="https://wa.me/4915737824794" target="_blank">💳 Payonner</a>
       </div>
     </div>
   </footer>
@@ -140,109 +140,8 @@ const copy={
     additional:"Neben allen Artikeln, die Sie sehen, falls Sie etwas anderes, Einzigartiges oder Individuelles möchten, können Sie uns auf WhatsApp Ihre Wünsche mitteilen. Wir erfüllen diese gerne. Hier sind nur einige sofort verfügbare Artikel, aber Ihr Wunsch kann innerhalb von 5-7 Tagen erfüllt werden.",
     buyText:"Produkt kaufen",
     getTitle:p=>p.titleDE,
-    whatsappMsg:p=>`Hallo! Ich möchte das Produkt bestellen: ${p.titleDE} (ID: ${p.id}). Preis: ${p.price}. Bitte um Bestätigung.`
+    whatsappMsg:p=>`Hallo! Ich möchte das Produkt bestellen: ${p.titleDE} (ID: ${p.id}). Preis: ${p.price}. Bitte um Bestätigung.`,
+    happyText:"🇩🇪🇦🇹🇸🇮🇩🇰🇸🇪🇫🇷🇮🇹🇳🇱🇨🇭🇭🇷🇧🇦\n•Mögliches Versand per Express überall!"
   },
   hr:{
-    heroTitle:"Ručne izrađene voskane dekoracije (pokloni 💝)",
-    heroDesc:"Od sojinog voska – idealne za vjenčanja, proslave, rođendane, blagdane i još mnogo toga. Posebne narudžbe (drugačije boje, mirisi ili dizajni) moguće su po želji. Dostava diljem Njemačke i inozemstva.",
-    additional:"Pored svih artikala koje vidite, ukoliko Vam treba nešto drugačije, nešto unikatno, jedinstveno. U razgovoru na WhatsApp-u sa nama možete reći svoje zamisli i želje, i naravno mi ćemo Vam to ispuniti. Ovde smo stavili samo nekoliko artikala koje imamo na stanju odma, ali i Vaša želja može biti ostvarena u roku 5-7 dana maksimalno za zahtjevne radove.",
-    buyText:"Kupi proizvod",
-    getTitle:p=>p.titleHR,
-    whatsappMsg:p=>`Pozdrav! Želim naručiti proizvod: ${p.titleHR} (ID: ${p.id}). Cijena: ${p.price}. Molim potvrdu.`
-  }
-};
-
-const langDeBtn=document.getElementById("lang-de");
-const langHrBtn=document.getElementById("lang-hr");
-
-function setLang(lang){
-  document.documentElement.lang=lang;
-  langDeBtn.classList.toggle("active",lang==="de");
-  langHrBtn.classList.toggle("active",lang==="hr");
-  const c=copy[lang];
-  document.getElementById("hero-title").textContent=c.heroTitle;
-  document.getElementById("hero-desc").textContent=c.heroDesc;
-  document.getElementById("hero-additional").textContent=c.additional;
-  renderGrid(lang);
-}
-
-langDeBtn.addEventListener("click",()=>setLang("de"));
-langHrBtn.addEventListener("click",()=>setLang("hr"));
-
-setLang(DEFAULT_LANG);
-
-function makeWhatsAppUrl(p,lang){
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(copy[lang].whatsappMsg(p))}`;
-}
-
-function renderGrid(lang){
-  const grid=document.getElementById("grid");
-  grid.innerHTML="";
-  products.forEach(p=>{
-    const div=document.createElement("div");
-    div.className="card";
-    div.innerHTML=`
-      <div class="thumb"><img src="${p.img}" alt="${copy[lang].getTitle(p)}"></div>
-      <div class="card-body">
-        <div class="title">${copy[lang].getTitle(p)}</div>
-        <div class="price">${p.price}</div>
-        <a class="btn" href="${makeWhatsAppUrl(p,lang)}" target="_blank">${copy[lang].buyText}</a>
-      </div>
-    `;
-    grid.appendChild(div);
-
-    // Lightbox klik
-    const imgEl = div.querySelector("img");
-    imgEl.addEventListener("click", ()=>{
-      const lightbox = document.getElementById("lightbox");
-      const lightboxImg = document.getElementById("lightbox-img");
-      lightboxImg.src = p.img;
-      lightbox.style.display = "flex";
-    });
-  });
-}
-
-// Animacija motiva 🌸 🎁 🎀 🥳
-const bg=document.getElementById("bg-flowers");
-const motifs=["🌸","🎁","🎀","🥳"];
-const colors=["#0066CC","#CC0000","#FFCC00","#FF66AA"];
-for(let i=0;i<30;i++){
-  const f=document.createElement("div");
-  f.className="flower";
-  f.textContent=motifs[Math.floor(Math.random()*motifs.length)];
-  f.style.color=colors[Math.floor(Math.random()*colors.length)];
-  f.style.left=Math.random()*100+"%";
-  f.style.top=Math.random()*100+"%";
-  const size=20+Math.random()*25;
-  f.style.fontSize=size+"px";
-  f.style.width=size+"px";
-  f.style.height=size+"px";
-  f.style.animationDuration=(5+Math.random()*12)+"s";
-  f.style.animationDirection=Math.random()>0.5?"normal":"reverse";
-  bg.appendChild(f);
-}
-
-// Animacija broja zadovoljnih korisnika
-let happyCount=0;
-const targetCount=1450;
-const happyElem=document.getElementById("happy-count");
-function animateHappyUsers(){
-  if(happyCount<targetCount){
-    happyCount+=Math.ceil(targetCount/100);
-    if(happyCount>targetCount) happyCount=targetCount;
-    happyElem.textContent=happyCount.toLocaleString();
-    requestAnimationFrame(animateHappyUsers);
-  }
-}
-animateHappyUsers();
-
-// Lightbox zatvaranje
-const lightbox = document.getElementById("lightbox");
-const lightboxClose = document.getElementById("lightbox-close");
-lightboxClose.addEventListener("click", ()=>lightbox.style.display="none");
-lightbox.addEventListener("click", (e)=>{
-  if(e.target === lightbox) lightbox.style.display="none";
-});
-</script>
-</body>
-</html>
+    heroTitle:"Ručne izrađ
