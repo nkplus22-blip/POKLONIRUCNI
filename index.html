@@ -120,69 +120,68 @@ footer .contact-btn:hover{background:#128C7E;transform:scale(1.05);}
 </div>
 
 <script>
-const WHATSAPP_NUMBER="4915737824794";
-const DEFAULT_LANG="de";
+const WHATSAPP_NUMBER = "4915737824794";
+const DEFAULT_LANG = "de";
 
-const products=[
-  {id:"p1",titleDE:"Produkt Nummer 1",titleHR:"Proizvod broj 1",price:"38€",img:"image1.jpeg"},
-  {id:"p2",titleDE:"Produkt Nummer 2",titleHR:"Proizvod broj 2",price:"25€",img:"image2.jpeg"},
-  {id:"p3",titleDE:"Produkt Nummer 3",titleHR:"Proizvod broj 3",price:"17€",img:"image3.jpeg"},
-  {id:"p4",titleDE:"Produkt Nummer 4",titleHR:"Proizvod broj 4",price:"35€",img:"image4.jpeg"},
-  {id:"p5",titleDE:"Produkt Nummer 5",titleHR:"Proizvod broj 5",price:"11€",img:"image5.jpeg"},
-  {id:"p6",titleDE:"Produkt Nummer 6",titleHR:"Proizvod broj 6",price:"26€",img:"image6.jpeg"},
-  {id:"p7",titleDE:"Produkt Nummer 7",titleHR:"Proizvod broj 7",price:"14€",img:"image7.jpeg"},
-  {id:"p8",titleDE:"Produkt Nummer 8",titleHR:"Proizvod broj 8",price:"45€",img:"image8.jpeg"},
-  {id:"p9",titleDE:"Produkt Nummer 9",titleHR:"Proizvod broj 9",price:"40€",img:"image9.jpeg"}
+const products = [
+  {id:"p1", titleDE:"Produkt Nummer 1", titleHR:"Proizvod broj 1", price:"38€", img:"image1.jpeg"},
+  {id:"p2", titleDE:"Produkt Nummer 2", titleHR:"Proizvod broj 2", price:"25€", img:"image2.jpeg"},
+  {id:"p3", titleDE:"Produkt Nummer 3", titleHR:"Proizvod broj 3", price:"17€", img:"image3.jpeg"},
+  {id:"p4", titleDE:"Produkt Nummer 4", titleHR:"Proizvod broj 4", price:"35€", img:"image4.jpeg"},
+  {id:"p5", titleDE:"Produkt Nummer 5", titleHR:"Proizvod broj 5", price:"11€", img:"image5.jpeg"},
+  {id:"p6", titleDE:"Produkt Nummer 6", titleHR:"Proizvod broj 6", price:"26€", img:"image6.jpeg"},
+  {id:"p7", titleDE:"Produkt Nummer 7", titleHR:"Proizvod broj 7", price:"14€", img:"image7.jpeg"},
+  {id:"p8", titleDE:"Produkt Nummer 8", titleHR:"Proizvod broj 8", price:"45€", img:"image8.jpeg"},
+  {id:"p9", titleDE:"Produkt Nummer 9", titleHR:"Proizvod broj 9", price:"40€", img:"image9.jpeg"}
 ];
 
-const copy={
-  de:{heroTitle:"Handgefertigte Wachsdekorationen (Geschenke 💝)",heroDesc:"Aus Sojawachs – perfekt für Hochzeiten, Feiern, Geburtstage, Feiertage und mehr. Sonderanfertigungen (andere Farben, Düfte oder Designs) sind auf Bestellung möglich. Versand deutschlandweit und darüber hinaus.",buyText:"Produkt kaufen",getTitle:p=>p.titleDE,whatsappMsg:p=>`Hallo! Ich möchte das Produkt bestellen: ${p.titleDE} (ID: ${p.id}). Preis: ${p.price}. Bitte um Bestätigung.`},
-  hr:{heroTitle:"Ručno izrađene voskane dekoracije (pokloni 💝)",heroDesc:"Od sojinog voska – idealne za vjenčanja, proslave, rođendane, blagdane i još mnogo toga. Posebne narudžbe (drugačije boje, mirisi ili dizajni) moguće su po želji. Dostava diljem Njemačke i inozemstva.",buyText:"Kupi proizvod",getTitle:p=>p.titleHR,whatsappMsg:p=>`Pozdrav! Želim naručiti proizvod: ${p.titleHR} (ID: ${p.id}). Cijena: ${p.price}. Molim potvrdu.`}
+const copy = {
+  de:{
+    heroTitle:"Handgefertigte Wachsdekorationen (Geschenke 💝)",
+    heroDesc:"Aus Sojawachs – perfekt für Hochzeiten, Feiern, Geburtstage, Feiertage und mehr. Sonderanfertigungen (andere Farben, Düfte oder Designs) sind auf Bestellung möglich. Versand deutschlandweit und darüber hinaus.",
+    buyText:"Produkt kaufen",
+    getTitle:p=>p.titleDE,
+    whatsappMsg:p=>`Hallo! Ich möchte das Produkt bestellen: ${p.titleDE} (ID: ${p.id}). Preis: ${p.price}. Bitte um Bestätigung.`
+  },
+  hr:{
+    heroTitle:"Ručno izrađene voskane dekoracije (pokloni 💝)",
+    heroDesc:"Od sojinog voska – idealne za vjenčanja, proslave, rođendane, blagdane i još mnogo toga. Posebne narudžbe (drugačije boje, mirisi ili dizajni) moguće su po želji. Dostava diljem Njemačke i inozemstva.",
+    buyText:"Kupi proizvod",
+    getTitle:p=>p.titleHR,
+    whatsappMsg:p=>`Pozdrav! Želim naručiti proizvod: ${p.titleHR} (ID: ${p.id}). Cijena: ${p.price}. Molim potvrdu.`
+  }
 };
 
-const langDeBtn=document.getElementById("lang-de");
-const langHrBtn=document.getElementById("lang-hr");
+const langDeBtn = document.getElementById("lang-de");
+const langHrBtn = document.getElementById("lang-hr");
 
 function setLang(lang){
-  document.documentElement.lang=lang;
-  langDeBtn.classList.toggle("active",lang==="de");
-  langHrBtn.classList.toggle("active",lang==="hr");
-  const c=copy[lang];
-  document.getElementById("hero-title").textContent=c.heroTitle;
-  document.getElementById("hero-desc").textContent=c.heroDesc;
+  document.documentElement.lang = lang;
+  langDeBtn.classList.toggle("active", lang==="de");
+  langHrBtn.classList.toggle("active", lang==="hr");
+  const c = copy[lang];
+  document.getElementById("hero-title").textContent = c.heroTitle;
+  document.getElementById("hero-desc").textContent = c.heroDesc;
   renderGrid(lang);
 }
 
-langDeBtn.addEventListener("click",()=>setLang("de"));
-langHrBtn.addEventListener("click",()=>setLang("hr"));
+langDeBtn.addEventListener("click", ()=>setLang("de"));
+langHrBtn.addEventListener("click", ()=>setLang("hr"));
 
 setLang(DEFAULT_LANG);
 
-function makeWhatsAppUrl(p,lang){return`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(copy[lang].whatsappMsg(p))}`;}
+function makeWhatsAppUrl(p, lang){
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(copy[lang].whatsappMsg(p))}`;
+}
 
 function renderGrid(lang){
-  const grid=document.getElementById("grid");
-  grid.innerHTML="";
+  const grid = document.getElementById("grid");
+  grid.innerHTML = "";
   products.forEach((p,i)=>{
-    const div=document.createElement("div");
-    div.className="card";
-    div.innerHTML=`
+    const div = document.createElement("div");
+    div.className = "card";
+    div.innerHTML = `
       <div class="thumb"><img loading="lazy" src="${p.img}" alt="${copy[lang].getTitle(p)}"></div>
       <div class="card-body">
         <div class="title">${copy[lang].getTitle(p)}</div>
-        <div class="price">${p.price}</div>
-        <a class="btn" href="${makeWhatsAppUrl(p,lang)}" target="_blank">${copy[lang].buyText}</a>
-      </div>
-    `;
-    grid.appendChild(div);
-    setTimeout(()=>{div.classList.add("visible")},i*150);
-  });
-}
-
-// Animate happy users
-let happyCount=0;
-const targetCount=1450;
-const happyElem=document.getElementById("happy-count");
-function animateHappyUsers(){
-  if(happyCount<targetCount){
-    happyCount+=Math.ceil(target
+        <div class="price">${p.price}</div
