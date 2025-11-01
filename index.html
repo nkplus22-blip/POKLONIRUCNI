@@ -30,7 +30,7 @@ nav button.active{background:rgba(0,0,0,0.05);}
 .hero h2{margin:0 0 8px 0;font-size:20px;}
 .hero p{margin:0;color:var(--muted);}
 .hero .additional-desc{margin-top:8px;font-size:14px;color:var(--muted);line-height:1.6;}
-.hero .happy-users{margin-top:8px;font-size:16px;font-weight:600;color:var(--accent);white-space:pre-line;}
+.hero .happy-users{margin-top:8px;font-size:18px;font-weight:700;color:var(--accent);white-space:pre-line;}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;}
 .card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,0.06);display:flex;flex-direction:column;}
 .thumb{height:180px;background:transparent;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:14px;cursor:pointer;}
@@ -100,12 +100,12 @@ footer .contact-btn{padding:8px 12px;border-radius:8px;text-decoration:none;colo
     <div class="payment-options">
       <h4>Opcije plaćanja:</h4>
       <div class="icons">
-        <a class="btn" href="https://wa.me/4915737824794" target="_blank">💳 IBAN</a>
-        <a class="btn" href="https://wa.me/4915737824794" target="_blank">💵 WesternUnion</a>
-        <a class="btn" href="https://wa.me/4915737824794" target="_blank">💰 RiaMoney</a>
-        <a class="btn" href="https://wa.me/4915737824794" target="_blank">🅿️ PayPal</a>
-        <a class="btn" href="https://wa.me/4915737824794" target="_blank">💸 Skrill</a>
-        <a class="btn" href="https://wa.me/4915737824794" target="_blank">💳 Payonner</a>
+        <span>💳 IBAN</span>
+        <span>💵 WesternUnion</span>
+        <span>💰 RiaMoney</span>
+        <span>🅿️ PayPal</span>
+        <span>💸 Skrill</span>
+        <span>💳 Payonner</span>
       </div>
     </div>
   </footer>
@@ -141,7 +141,8 @@ const copy={
     buyText:"Produkt kaufen",
     getTitle:p=>p.titleDE,
     whatsappMsg:p=>`Hallo! Ich möchte das Produkt bestellen: ${p.titleDE} (ID: ${p.id}). Preis: ${p.price}. Bitte um Bestätigung.`,
-    happyText:"🇩🇪🇦🇹🇸🇮🇩🇰🇸🇪🇫🇷🇮🇹🇳🇱🇨🇭🇭🇷🇧🇦\n•Mögliches Versand per Express überall!"
+    happyText:"🇩🇪🇦🇹🇨🇭🇸🇮🇩🇰🇸🇪🇫🇷🇮🇹🇳🇱🇭🇷🇧🇦\n•Mögliche Lieferung per Express überall!"
   },
   hr:{
-    heroTitle:"Ručne izrađ
+    heroTitle:"Ručne izrađene voskane dekoracije (pokloni 💝)",
+    heroDesc:"Od sojinog voska – idealne za vjenčanja, proslave, rođendane, blagdane i još mnogo toga. Posebne narudžbe (
