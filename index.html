@@ -39,22 +39,12 @@ nav button.active{background:rgba(0,0,0,0.05);}
 .title{font-weight:600;margin-bottom:4px;}
 .price{font-weight:700;color:var(--accent);margin-bottom:8px;}
 .btn{padding:10px 12px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;color:#fff;background:var(--wa);border:none;cursor:pointer;}
+.promo-btn{padding:16px 20px;margin:16px 0;border-radius:12px;background:var(--accent);color:#fff;font-weight:700;text-align:center;cursor:pointer;display:block;text-decoration:none;}
+.promo-btn small{display:block;font-weight:400;font-size:12px;margin-top:4px;color:#fff;}
 footer{margin-top:24px;padding:12px;border-top:1px solid #eee;display:flex;flex-direction:column;align-items:center;gap:8px;}
 footer .contact-btn{padding:8px 12px;border-radius:8px;text-decoration:none;color:#fff;background:var(--wa);font-weight:600;}
-.payment-options {margin-top:12px;text-align:center;font-size:14px;color:var(--muted);}
-.payment-options .icons span {
-  padding:8px 14px;
-  border-radius:8px;
-  background:#25D366;
-  color:#fff;
-  cursor:pointer;
-  display:inline-block;
-  margin:4px;
-  font-size:14px;
-  text-align:center;
-  transition: transform 0.2s;
-}
-.payment-options .icons span:hover{transform:scale(1.05);}
+.payment-options {margin-top:12px;text-align:center;font-size:14px;color:var(--muted);border:1px solid #eee;padding:12px;border-radius:12px;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;}
+.payment-options button{padding:8px 12px;border-radius:8px;background:var(--wa);color:#fff;border:none;cursor:pointer;font-weight:600;flex:1;min-width:100px;}
 @media(max-width:520px){.thumb{height:150px;}}
 
 /* Lightbox */
@@ -81,35 +71,6 @@ footer .contact-btn{padding:8px 12px;border-radius:8px;text-decoration:none;colo
   cursor:pointer;
   font-weight:bold;
 }
-
-/* Promo dugme */
-.promo-btn {
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  padding:16px 20px;
-  margin:20px auto;
-  background:linear-gradient(90deg,#e07a6a,#f08a7a);
-  color:#fff;
-  border-radius:12px;
-  font-weight:700;
-  text-align:center;
-  cursor:pointer;
-  max-width:320px;
-  font-size:18px;
-  box-shadow:0 4px 12px rgba(0,0,0,0.2);
-  animation: pulse 2s infinite;
-}
-.promo-btn small {
-  font-weight:400;
-  font-size:12px;
-  margin-top:4px;
-}
-@keyframes pulse{
-  0%,100%{transform:scale(1);}
-  50%{transform:scale(1.05);}
-}
 </style>
 </head>
 <body>
@@ -133,28 +94,23 @@ footer .contact-btn{padding:8px 12px;border-radius:8px;text-decoration:none;colo
 
   <main>
     <div class="grid" id="grid"></div>
+    <a class="promo-btn" id="promo-btn" href="" target="_blank">
+      •Kupis 2 - Dobijes 3•
+      <small id="promo-subtext"></small>
+    </a>
   </main>
-
-  <!-- Promo dugme -->
-  <a id="promo-btn" class="promo-btn" target="_blank" href="">
-    <span id="promo-main"></span>
-    <small id="promo-sub"></small>
-  </a>
 
   <footer>
     <div>Kontakt</div>
     <div id="contact-number">+49 1573 7824794</div>
     <a class="contact-btn" href="https://wa.me/4915737824794" target="_blank">Kontaktiraj na WhatsApp</a>
-    <div class="payment-options">
-      <h4>Opcije plaćanja:</h4>
-      <div class="icons">
-        <span>💳 IBAN</span>
-        <span>💵 WesternUnion</span>
-        <span>💰 RiaMoney</span>
-        <span>🅿️ PayPal</span>
-        <span>💸 Skrill</span>
-        <span>💳 Payonner</span>
-      </div>
+    <div class="payment-options" id="payment-options">
+      <button data-name="IBAN">💳 IBAN</button>
+      <button data-name="WesternUnion">💵 WesternUnion</button>
+      <button data-name="RiaMoney">💰 RiaMoney</button>
+      <button data-name="PayPal">🅿️ PayPal</button>
+      <button data-name="Skrill">💸 Skrill</button>
+      <button data-name="Payonner">💳 Payonner</button>
     </div>
   </footer>
 </div>
@@ -187,6 +143,8 @@ const copy={
     heroDesc:"Aus Sojawachs – perfekt für Hochzeiten, Feiern, Geburtstage, Feiertage und mehr. Sonderanfertigungen (andere Farben, Düfte oder Designs) sind auf Bestellung möglich. Versand deutschlandweit und darüber hinaus.",
     additional:"Neben allen Artikeln, die Sie sehen, falls Sie etwas anderes, Einzigartiges oder Individuelles möchten, können Sie uns auf WhatsApp Ihre Wünsche mitteilen. Wir erfüllen diese gerne. Hier sind nur einige sofort verfügbare Artikel, aber Ihr Wunsch kann innerhalb von 5-7 Tagen erfüllt werden.",
     buyText:"Produkt kaufen",
+    promoText:"•Kaufen 2 - Bekommen 3•",
+    promoSubtext:"Wenn Sie 2 Artikel im Wert von mindestens 75€ kaufen, erhalten Sie 3. Artikel kostenlos!",
     getTitle:p=>p.titleDE,
     whatsappMsg:p=>`Hallo! Ich möchte das Produkt bestellen: ${p.titleDE} (ID: ${p.id}). Preis: ${p.price}. Bitte um Bestätigung.`
   },
@@ -195,6 +153,8 @@ const copy={
     heroDesc:"Od sojinog voska – idealne za vjenčanja, proslave, rođendane, blagdane i još mnogo toga. Posebne narudžbe (drugačije boje, mirisi ili dizajni) moguće su po želji. Dostava diljem Njemačke i inozemstva.",
     additional:"Pored svih artikala koje vidite, ukoliko Vam treba nešto drugačije, nešto unikatno, jedinstveno. U razgovoru na WhatsApp-u sa nama možete reći svoje zamisli i želje, i naravno mi ćemo Vam to ispuniti. Ovde smo stavili samo nekoliko artikala koje imamo na stanju odma, ali i Vaša želja može biti ostvarena u roku 5-7 dana maksimalno za zahtjevne radove.",
     buyText:"Kupi proizvod",
+    promoText:"•Kupis 2 - Dobijes 3•",
+    promoSubtext:"Ukoliko kupite 2 artikla u vrijednosti minimum 75€, 3 artikal dobijate besplatno!",
     getTitle:p=>p.titleHR,
     whatsappMsg:p=>`Pozdrav! Želim naručiti proizvod: ${p.titleHR} (ID: ${p.id}). Cijena: ${p.price}. Molim potvrdu.`
   }
@@ -202,5 +162,73 @@ const copy={
 
 const langDeBtn=document.getElementById("lang-de");
 const langHrBtn=document.getElementById("lang-hr");
+const promoBtn=document.getElementById("promo-btn");
+const promoSubtext=document.getElementById("promo-subtext");
+const paymentOptions=document.querySelectorAll("#payment-options button");
 
-const
+function setLang(lang){
+  document.documentElement.lang=lang;
+  langDeBtn.classList.toggle("active",lang==="de");
+  langHrBtn.classList.toggle("active",lang==="hr");
+  const c=copy[lang];
+  document.getElementById("hero-title").textContent=c.heroTitle;
+  document.getElementById("hero-desc").textContent=c.heroDesc;
+  document.getElementById("hero-additional").textContent=c.additional;
+  promoBtn.textContent=c.promoText;
+  promoSubtext.textContent=c.promoSubtext;
+  promoBtn.href=`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(c.promoText)}`;
+  renderGrid(lang);
+}
+
+langDeBtn.addEventListener("click",()=>setLang("de"));
+langHrBtn.addEventListener("click",()=>setLang("hr"));
+
+setLang(DEFAULT_LANG);
+
+function makeWhatsAppUrl(p,lang){
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(copy[lang].whatsappMsg(p))}`;
+}
+
+function renderGrid(lang){
+  const grid=document.getElementById("grid");
+  grid.innerHTML="";
+  products.forEach(p=>{
+    const div=document.createElement("div");
+    div.className="card";
+    div.innerHTML=`
+      <div class="thumb"><img src="${p.img}" alt="${copy[lang].getTitle(p)}"></div>
+      <div class="card-body">
+        <div class="title">${copy[lang].getTitle(p)}</div>
+        <div class="price">${p.price}</div>
+        <a class="btn" href="${makeWhatsAppUrl(p,lang)}" target="_blank">${copy[lang].buyText}</a>
+      </div>
+    `;
+    grid.appendChild(div);
+
+    // Lightbox on image click
+    div.querySelector("img").addEventListener("click", ()=>{
+      document.getElementById("lightbox-img").src=p.img;
+      document.getElementById("lightbox").style.display="flex";
+    });
+  });
+}
+
+// Lightbox close
+document.getElementById("lightbox-close").addEventListener("click", ()=>{
+  document.getElementById("lightbox").style.display="none";
+});
+document.getElementById("lightbox").addEventListener("click",(e)=>{
+  if(e.target===document.getElementById("lightbox")) document.getElementById("lightbox").style.display="none";
+});
+
+// Payment buttons WhatsApp
+paymentOptions.forEach(btn=>{
+  btn.addEventListener("click",()=>window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=Ich möchte über ${btn.dataset.name} bezahlen`, "_blank"));
+});
+
+// Flower animation
+const bg=document.getElementById("bg-flowers");
+const motifs=["🌸","🎁","🎀","🥳"];
+const colors=["#0066CC","#CC0000","#FFCC00","#FF66AA"];
+for(let i=0;i<30;i++){
+  const f=document.create
