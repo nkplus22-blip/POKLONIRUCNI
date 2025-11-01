@@ -1,85 +1,68 @@
 # DekorationsGeschenke
 
-Ručne voskane dekoracije i pokloni – savršeni za vjenčanja, proslave, rođendane i praznike. Ova web stranica omogućava pregled i narudžbu proizvoda putem WhatsAppa.
+Jednostavna web stranica za prikaz ručno izrađenih voskanih dekoracija (poklona) sa opcijom kupovine preko WhatsApp-a. Stranica je dvojezična: njemački (DE) i hrvatski (HR).
 
-## Sadržaj
+---
 
-- **index.html** – glavna stranica s galerijom proizvoda
-- **images/** – folder sa slikama proizvoda (image1.jpeg … image9.jpeg)
-- **README.md** – ovaj dokument
+## Struktura projekta
 
-## Opis stranice
+/ (glavni direktorij) │ ├─ index.html ├─ README.md ├─ image1.jpeg ├─ image2.jpeg ├─ image3.jpeg ├─ image4.jpeg ├─ image5.jpeg ├─ image6.jpeg ├─ image7.jpeg ├─ image8.jpeg ├─ image9.jpeg
 
-- Animacija motiva 🌸 🎁 🎀 🥳 u pozadini
-- Nazivi proizvoda se prevode između njemačkog (DE) i hrvatskog (HR)
-- Okviri za slike su providni da se vidi animacija u pozadini
-- Klikom na "Produkt kaufen / Kupi proizvod" otvara se WhatsApp sa pripremljenom porukom za narudžbu
-- Footer uključuje kontakt i opcije plaćanja
+> Sve slike proizvoda se nalaze direktno u glavnom direktoriju, ne u folderu `images/`.
 
-## Instalacija
+---
 
-1. Klonirajte ili preuzmite repozitorij:
+## Kako koristiti stranicu
 
-```bash
-git clone https://github.com/tvojusername/tvojrepo.git
+1. Klonirajte ili preuzmite projekat na svoj uređaj.
+2. Provjerite da su sve slike (`image1.jpeg` … `image9.jpeg`) u istom direktoriju kao `index.html`.
+3. Otvorite `index.html` u pregledniku.
+4. Klikom na dugme **Kupi proizvod / Produkt kaufen** otvorit će se WhatsApp chat sa unaprijed pripremljenom porukom za narudžbu.
+5. Možete prebacivati jezik klikom na 🇩🇪 DE ili 🇭🇷 HR u gornjem desnom kutu.
 
-2. Provjerite strukturu foldera:
+---
 
+## Opcije plaćanja
 
+Ispod kontakta se nalaze opcije plaćanja:
 
-tvojrepo/
-│
-├─ index.html
-├─ README.md
-└─ images/
-   ├─ image1.jpeg
-   ├─ image2.jpeg
-   ├─ image3.jpeg
-   ├─ image4.jpeg
-   ├─ image5.jpeg
-   ├─ image6.jpeg
-   ├─ image7.jpeg
-   ├─ image8.jpeg
-   └─ image9.jpeg
+- 💳 IBAN  
+- 💵 WesternUnion  
+- 💰 RiaMoney  
+- 🅿️ PayPal  
+- 💸 Skrill  
+- 💳 Payonner  
 
-3. Otvorite index.html u pregledniku da vidite stranicu uživo.
+---
 
+## Tehničke informacije
 
+- HTML, CSS i JavaScript (bez dodatnih frameworka)  
+- Responsive dizajn za mobitele i desktop  
+- Animacija simbola 🎁 🌸 🎀 🥳 u pozadini  
 
-Korištenje
+---
 
-Promjena jezika: kliknite 🇩🇪 DE ili 🇭🇷 HR u headeru
+## Prilagodba
 
-Dodavanje novih proizvoda:
+- Dodavanje novih proizvoda: u `index.html` u `products` array dodajte novi objekat sa svojom slikom i podacima.  
+- Promjena WhatsApp broja: izmijenite vrijednost `WHATSAPP_NUMBER` u `<script>` sekciji.  
+- Promjena jezika i teksta: izmijenite `copy` objekat u `<script>` sekciji.
 
-Dodajte novu sliku u images/ folder
+---
 
-Dodajte novi objekt u products listu u index.html s nazivom DE i HR i cijenom
+## Upute za commit i push na GitHub (mobitel)
 
+1. Otvorite GitHub app i idite u vaš repository.
+2. Kliknite **Add file → Upload files** i odaberite sve slike (`image1.jpeg` … `image9.jpeg`) i `index.html`.
+3. U **Commit changes** polje unesite:
 
-Sve promjene se mogu pushati na GitHub da budu online
+Add index.html and product images Added index.html with product grid and animations. Added all product images (image1.jpeg to image9.jpeg) in main directory.
 
+4. Odaberite **Commit directly to main branch**.
+5. Kliknite **Commit changes**.
+6. Stranica i slike su sada spremni na GitHub-u i mogu se prikazati preko GitHub Pages.
 
-Kontakt
+---
 
-WhatsApp: +49 1573 7824794
-
-
-Opcije plaćanja
-
-💳 IBAN
-
-💵 WesternUnion
-
-💰 RiaMoney
-
-🅿️ PayPal
-
-💸 Skrill
-
-💳 Payonner
-
-
-License
-
-Ovaj projekt je slobodan za ličnu upotrebu.
+> Projekt je spreman za direktno postavljanje na GitHub Pages
