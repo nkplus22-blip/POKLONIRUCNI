@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DekorationsGeschenke</title>
+  <style>
+    :root{
+      --bg:#fffaf5;
+      --card:#ffffff;
+      --accent:#e07a6a;
+      --muted:#6b6b6b;
+      --wa:#25D366;
+    }
+    *{box-sizing:border-box;}
+    body{margin:0;font-family:system-ui, sans-serif;background:var(--bg);color:#222;position:relative;overflow-x:hidden;}
+    .bg-flowers{position:fixed;inset:0;z-index:-1;pointer-events:none;font-size:24px;user-select:none;}
+    .flower{position:absolute;opacity:0.6;animation:floaty linear infinite;display:flex;align-items:center;justify-content:center;}
+    @keyframes floaty{
+      0%{transform:translateY(100vh) translateX(0) rotate(0deg);}
+      50%{transform:translateY(50vh) translateX(25px) rotate(180deg);}
+      100%{transform:translateY(-50px) translateX(50px) rotate(360deg);}
+    }
+
+    .wrap{max-width:1200px;margin:0 auto;padding:24px;}
+    header{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;}
+    .brand h1{margin:0;font-size:24px;}
+    nav button{margin-left:8px;padding:6px 10px;border-radius:6px;border:none;cursor:pointer;}
+    nav button.active{background:rgba(0,0,0,0.05);}
+    .hero{margin-bottom:24px;}
+    .hero h2{margin:0 0 8px 0;font-size:20px;}
+    .hero p{margin:0;color:var(--muted);}
+    .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px;}
+    .card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,0.06);display:flex;flex-direction:column;}
+    .thumb{height:180px;background:transparent;display:flex;align-items:center;justify-content:center;color:#bbb;font-size:14px;border:1px dashed #ccc;} /* providno sa obrubom */
+    .card-body{padding:12px;display:flex;flex-direction:column;flex:1;}
+    .title{font-weight:600;margin-bottom:4px;}
+    .price{font-weight:700;color:var(--accent);margin-bottom:8px;}
+    .btn{padding:10px 12px;border-radius:8px;text-align:center;text-decoration:none;font-weight:600;color:#fff;background:var(--wa);border:none;cursor:pointer;}
+    footer{margin-top:24px;padding:12px;border-top:1px solid #eee;display:flex;flex-direction:column;align-items:center;gap:8px;}
+    footer .contact-btn{padding:8px 12px;border-radius:8px;text-decoration:none;color:#fff;background:var(--wa);font-weight:600;}
+    @media(max-width:520px){.thumb{height:150px;}}
+  </style>
+</head>
+<body>
+  <div class="bg-flowers" id="bg-flowers"></div>
+
+  <div class="wrap">
+    <header>
+      <div class="brand"><h1>DekorationsGeschenke</h1></div>
+      <nav>
+        <button id="lang-de" class="active">🇩🇪 DE</button>
+        <button id="lang-hr">🇭🇷 HR</button>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h2 id="hero-title">Handgefertigte Wachsdekorationen (Geschenke 💝)</h2>
+      <p id="hero-desc">Aus Sojawachs – perfekt für Hochzeiten, Feiern, Geburtstage, Feiertage und mehr. Sonderanfertigungen (andere Farben, Düfte oder Designs) sind auf Bestellung möglich. Versand deutschlandweit und darüber hinaus.</p>
+    </section>
+
+    <main>
+      <div class="grid" id="grid"></div>
+    </main>
+
+    <footer>
+      <div>Kontakt</div>
+      <div id="contact-number">+49 1573 7824794</div>
+      <a class="contact-btn" href="https://wa.me/4915737824794" target="_blank">Kontaktiraj na WhatsApp</a>
+    </footer>
+  </div>
+
+<script>
+  const WHATSAPP_NUMBER = "4915737824794";
+  const DEFAULT_LANG = "de";
+
+  const products = [
+    { id:"p1", title:"Proizvod broj 1", price:"38€", img:"images/image1.jpeg"},
+    { id:"p2", title:"Proizvod broj 2", price:"25€", img:"images/image2.jpeg"},
+    { id:"p3", title:"Proizvod broj 3", price:"17€", img:"images/image3.jpeg"},
+    { id:"p4", title:"Proizvod broj 4", price:"35€", img:"images/image4.jpeg"},
+    { id:"p5", title:"Proizvod broj 5", price:"11€", img:"images/image5.jpeg"},
+    { id:"p6", title:"Proizvod broj 6", price:"26€", img:"images/image6.jpeg"},
+    { id:"p7", title:"Proizvod broj 7", price:"14€", img:"images/image7.jpeg"},
+    { id:"p8", title:"Proizvod broj 8", price:"45€", img:"images/image8.jpeg"},
+    { id:"p9", title:"Proizvod broj 9", price:"40€", img:"images/image9.jpeg"}
+  ];
+
+  const copy = {
+    de:{
+      heroTitle:"Handgefertigte Wachsdekorationen (Geschenke 💝)",
+      heroDesc:"Aus Sojawachs – perfekt für Hochzeiten, Feiern, Geburtstage, Feiertage und mehr. Sonderanfertigungen (andere Farben, Düfte oder Designs) sind auf Bestellung möglich. Versand deutschlandweit und darüber hinaus.",
+      buyText:"Produkt kaufen",
+      whatsappMsg:(p)=>`Hallo! Ich möchte das Produkt bestellen: ${p.title} (ID: ${p.id}). Preis: ${p.price}. Bitte um Bestätigung.`
+    },
+    hr:{
+      heroTitle:"Ručno izrađene voskane dekoracije (pokloni 💝)",
+      heroDesc:"Od sojinog voska – idealne za vjenčanja, proslave, rođendane, blagdane i još mnogo toga. Posebne narudžbe (drugačije boje, mirisi ili dizajni) moguće su po želji. Dostava diljem Njemačke i inozemstva.",
+      buyText:"Kupi proizvod",
+      whatsappMsg:(p)=>`Pozdrav! Želim naručiti proizvod: ${p.title} (ID: ${p.id}). Cijena: ${p.price}. Molim potvrdu.`
+    }
+  };
+
+  const langDeBtn = document.getElementById("lang-de");
+  const langHrBtn = document.getElementById("lang-hr");
+
+  function setLang(lang){
+    document.documentElement.lang = lang;
+    langDeBtn.classList.toggle("active", lang==="de");
+    langHrBtn.classList.toggle("active", lang==="hr");
+    const c = copy[lang];
+    document.getElementById("hero-title").textContent = c.heroTitle;
+    document.getElementById("hero-desc").textContent = c.heroDesc;
+    renderGrid(lang);
+  }
+
+  langDeBtn.addEventListener("click",()=>setLang("de"));
+  langHrBtn.addEventListener("click",()=>setLang("hr"));
+
+  setLang(DEFAULT_LANG);
+
+  function makeWhatsAppUrl(p,lang){
+    const msg = copy[lang].whatsappMsg(p);
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+  }
+
+  function renderGrid(lang){
+    const grid = document.getElementById("grid");
+    grid.innerHTML="";
+    products.forEach(p=>{
+      const div=document.createElement("div");
+      div.className="card";
+      div.innerHTML=`
+        <div class="thumb"><img src="${p.img}" alt="${p.title}" style="width:100%;height:100%;object-fit:cover;"></div>
+        <div class="card-body">
+          <div class="title">${p.title}</div>
+          <div class="price">${p.price}</div>
+          <a class="btn" href="${makeWhatsAppUrl(p,lang)}" target="_blank">${copy[lang].buyText}</a>
+        </div>
+      `;
+      grid.appendChild(div);
+    });
